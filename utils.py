@@ -7,7 +7,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder, StandardScaler, OrdinalEncoder, OneHotEncoder
 
 
-def split_and_scale_datasets(X, y, split_1=0.5, split_2=0.5, random_state=42, scale=True):
+def split_and_scale_datasets(X, y, split_1=0.5, split_2=0.5, random_state=None, scale=True):
 	X_train, X_temp, y_train, y_temp = train_test_split(X, y, test_size=split_1, random_state=random_state, stratify=y)
 	X_val, X_test, y_val, y_test =  train_test_split(X_temp, y_temp, test_size=split_2, random_state=random_state, stratify=y_temp)
 
@@ -35,6 +35,7 @@ def set_summary(dataset, set_name, print_res=True):
 		
 	if "y" in set_name:
 		counts = pd.DataFrame(dataset).value_counts()
+		print(counts)
 		class_0_count = counts[0]
 		class_1_count = counts[1]
 
