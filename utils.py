@@ -35,7 +35,6 @@ def set_summary(dataset, set_name, print_res=True):
 		
 	if "y" in set_name:
 		counts = pd.DataFrame(dataset).value_counts()
-		print(counts)
 		class_0_count = counts[0]
 		class_1_count = counts[1]
 
