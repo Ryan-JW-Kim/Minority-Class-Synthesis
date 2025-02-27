@@ -1,0 +1,12 @@
+Balance
+Pima
+Contraceptive
+Winequality-red
+Spambase
+Winequality-white
+Banana
+Thyroid
+Coil200
+Penbased
+Magic
+Letter
