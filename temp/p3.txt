@@ -1,9 +1,0 @@
-Magic
-Page-blocks
-Penbased
-Phoneme
-Ring
-Satimage
-Segment
-Texture
-Twonorm 
