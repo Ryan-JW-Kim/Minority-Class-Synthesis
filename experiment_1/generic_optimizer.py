@@ -21,8 +21,9 @@ def prepare_splits(path):
 		x = df.drop(columns='Class')
 		y = df['Class']
 
-	label_encoder = LabelEncoder()
 	x = np.array(x)
+	
+	label_encoder = LabelEncoder()
 	y = label_encoder.fit_transform(y)
 	
 	train_split = StratifiedShuffleSplit(
