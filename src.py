@@ -440,10 +440,10 @@ def load_datasets():
 		(fetch_ucirepo(id=225), "ILPD"),
 		(fetch_ucirepo(id=45), "heart_disease"),
 		(fetch_ucirepo(id=17), "wisconsin"),
-		(fetch_ucirepo(id=73), "mushroom"),
+		# (fetch_ucirepo(id=73), "mushroom"),
 		(fetch_ucirepo(id=94), "spambase"),
 		(fetch_ucirepo(id=161), "mammographic"),
-		(fetch_ucirepo(id=12), "balance"),
+		# (fetch_ucirepo(id=12), "balance"),
 		(fetch_ucirepo(id=110), "yeast1"),
 		(fetch_ucirepo(id=451), "coimbra"),
 		(fetch_ucirepo(id=244), "fertility")
