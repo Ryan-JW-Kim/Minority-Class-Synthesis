@@ -1,0 +1,349 @@
+abalone-20_vs_8-9-10
+Mean optimized validation acc diff 0.004948581148998699
+Mean optimized test acc diff       -0.007964122786669754
+Mean ideal test acc diff           -0.009123946493466319
+Mean optimized validation auc diff 0.2864689496209664
+Mean optimized test auc diff       0.0994510481683652
+Mean ideal test auc diff           0.14320899809009124
+
+Validation acc diff pval         True
+Test acc diff pval                 True
+Ideal Test acc diff pval           True
+
+Validation auc diff pval         True
+Test auc diff pval                 False
+Ideal Test auc diff pval           True
+
+--
+
+abalone19
+Mean optimized validation acc diff 0.00018539117538005347
+Mean optimized test acc diff       0.0
+Mean ideal test acc diff           6.185630779698854e-05
+Mean optimized validation auc diff 0.00809565325694358
+Mean optimized test auc diff       0.0
+Mean ideal test auc diff           3.116721209287771e-05
+
+Validation acc diff pval         False
+Test acc diff pval                 False
+Ideal Test acc diff pval           False
+
+Validation auc diff pval         False
+Test auc diff pval                 False
+Ideal Test auc diff pval           False
+
+--
+
+abalone9-18
+Mean optimized validation acc diff -0.02641165755919854
+Mean optimized test acc diff       -0.07103825136612021
+Mean ideal test acc diff           -0.08360655737704918
+Mean optimized validation auc diff 0.32813233490979155
+Mean optimized test auc diff       0.12690774867915613
+Mean ideal test auc diff           0.2121339113680154
+
+Validation acc diff pval         False
+Test acc diff pval                 True
+Ideal Test acc diff pval           True
+
+Validation auc diff pval         True
+Test auc diff pval                 False
+Ideal Test auc diff pval           True
+
+--
+
+
+Compiled modules for significant speedup can not be used!
+https://pymoo.org/installation.html#installation
+
+To disable this warning:
+from pymoo.config import Config
+Config.warnings['not_compiled'] = False
+
+cleveland-0_vs_4
+Mean optimized validation acc diff 0.05351906158357774
+Mean optimized test acc diff       -0.03150787696924233
+Mean ideal test acc diff           -0.02100525131282822
+Mean optimized validation auc diff 0.3270161290322581
+Mean optimized test auc diff       0.1620967741935484
+Mean ideal test auc diff           0.17271505376344087
+
+Validation acc diff pval         True
+Test acc diff pval                 True
+Ideal Test acc diff pval           False
+
+Validation auc diff pval         True
+Test auc diff pval                 False
+Ideal Test auc diff pval           True
+
+--
+
+ecoli-0-1-4-7_vs_2-3-5-6
+Mean optimized validation acc diff 0.008064516129032275
+Mean optimized test acc diff       -0.030337941628264198
+Mean ideal test acc diff           -0.034946236559139775
+Mean optimized validation auc diff 0.1111337728485436
+Mean optimized test auc diff       0.018187881727779853
+Mean ideal test auc diff           0.051310001543448044
+
+Validation acc diff pval         True
+Test acc diff pval                 True
+Ideal Test acc diff pval           True
+
+Validation auc diff pval         True
+Test auc diff pval                 False
+Ideal Test auc diff pval           False
+
+--
+
+ecoli-0-2-6-7_vs_3-5
+Mean optimized validation acc diff 0.021313364055299523
+Mean optimized test acc diff       -0.05299539170506911
+Mean ideal test acc diff           -0.05011520737327187
+Mean optimized validation auc diff 0.21483238456672993
+Mean optimized test auc diff       0.05768500948766608
+Mean ideal test auc diff           0.08161922833649597
+
+Validation acc diff pval         True
+Test acc diff pval                 True
+Ideal Test acc diff pval           True
+
+Validation auc diff pval         True
+Test auc diff pval                 False
+Ideal Test auc diff pval           True
+
+--
+
+ecoli-0-4-6_vs_5
+Mean optimized validation acc diff 0.014547754585705263
+Mean optimized test acc diff       -0.04364326375711577
+Mean ideal test acc diff           -0.03921568627450981
+Mean optimized validation auc diff 0.12307152875175316
+Mean optimized test auc diff       -0.029943899018232835
+Mean ideal test auc diff           0.0012622720897615528
+
+Validation acc diff pval         True
+Test acc diff pval                 True
+Ideal Test acc diff pval           True
+
+Validation auc diff pval         True
+Test auc diff pval                 False
+Ideal Test auc diff pval           False
+
+--
+
+ecoli-0-6-7_vs_3-5
+Mean optimized validation acc diff 0.02476958525345621
+Mean optimized test acc diff       -0.055718475073313775
+Mean ideal test acc diff           -0.04809384164222875
+Mean optimized validation auc diff 0.19838709677419358
+Mean optimized test auc diff       0.07677419354838712
+Mean ideal test auc diff           0.11870967741935484
+
+Validation acc diff pval         True
+Test acc diff pval                 True
+Ideal Test acc diff pval           True
+
+Validation auc diff pval         True
+Test auc diff pval                 False
+Ideal Test auc diff pval           True
+
+--
+
+ecoli1
+Mean optimized validation acc diff 0.06989247311827955
+Mean optimized test acc diff       -0.02572964669738864
+Mean ideal test acc diff           -0.023425499231950843
+Mean optimized validation auc diff 0.13991262080449265
+Mean optimized test auc diff       0.008612829763615
+Mean ideal test auc diff           0.054166326563928426
+
+Validation acc diff pval         True
+Test acc diff pval                 True
+Ideal Test acc diff pval           True
+
+Validation auc diff pval         True
+Test auc diff pval                 False
+Ideal Test auc diff pval           True
+
+--
+
+ecoli4
+Mean optimized validation acc diff 0.010368663594470041
+Mean optimized test acc diff       -0.02265745007680493
+Mean ideal test acc diff           -0.021889400921659
+Mean optimized validation auc diff 0.09616169865251124
+Mean optimized test auc diff       0.02119232339730502
+Mean ideal test auc diff           0.027643936300530827
+
+Validation acc diff pval         True
+Test acc diff pval                 True
+Ideal Test acc diff pval           True
+
+Validation auc diff pval         True
+Test auc diff pval                 False
+Ideal Test auc diff pval           False
+
+--
+
+glass-0-6_vs_5
+Mean optimized validation acc diff 0.048984468339307065
+Mean optimized test acc diff       -0.005973715651135004
+Mean ideal test acc diff           -0.06929510155316608
+Mean optimized validation auc diff 0.29172043010752685
+Mean optimized test auc diff       0.14572580645161287
+Mean ideal test auc diff           0.18817204301075274
+
+Validation acc diff pval         True
+Test acc diff pval                 False
+Ideal Test acc diff pval           False
+
+Validation auc diff pval         True
+Test auc diff pval                 False
+Ideal Test auc diff pval           True
+
+--
+
+glass1
+Mean optimized validation acc diff 0.14038231780167262
+Mean optimized test acc diff       -0.05599513085818626
+Mean ideal test acc diff           -0.01704199634814366
+Mean optimized validation auc diff 0.19250545719136553
+Mean optimized test auc diff       -0.020423449515629653
+Mean ideal test auc diff           0.03165884350344554
+
+Validation acc diff pval         True
+Test acc diff pval                 True
+Ideal Test acc diff pval           False
+
+Validation auc diff pval         True
+Test auc diff pval                 False
+Ideal Test auc diff pval           False
+
+--
+
+glass6
+Mean optimized validation acc diff 0.030465949820788565
+Mean optimized test acc diff       -0.006695069993913571
+Mean ideal test acc diff           0.0012172854534388312
+Mean optimized validation auc diff 0.09282959326788222
+Mean optimized test auc diff       0.05279503105590064
+Mean ideal test auc diff           0.06516730114205573
+
+Validation acc diff pval         True
+Test acc diff pval                 False
+Ideal Test acc diff pval           False
+
+Validation auc diff pval         True
+Test auc diff pval                 False
+Ideal Test auc diff pval           True
+
+--
+
+haberman
+Mean optimized validation acc diff 0.16212819438625892
+Mean optimized test acc diff       -0.03565365025466894
+Mean ideal test acc diff           0.007215619694397288
+Mean optimized validation auc diff 0.3077956989247311
+Mean optimized test auc diff       0.06756912442396315
+Mean ideal test auc diff           0.1427995391705069
+
+Validation acc diff pval         True
+Test acc diff pval                 True
+Ideal Test acc diff pval           False
+
+Validation auc diff pval         True
+Test auc diff pval                 False
+Ideal Test auc diff pval           True
+
+--
+
+pima
+Mean optimized validation acc diff 0.1528897849462366
+Mean optimized test acc diff       -0.002184139784946234
+Mean ideal test acc diff           0.018313172043010754
+Mean optimized validation auc diff 0.20018873375060178
+Mean optimized test auc diff       0.02814636494944636
+Mean ideal test auc diff           0.061648531535869064
+
+Validation acc diff pval         True
+Test acc diff pval                 False
+Ideal Test acc diff pval           True
+
+Validation auc diff pval         True
+Test auc diff pval                 False
+Ideal Test auc diff pval           True
+
+--
+
+winequality-red-8_vs_6-7
+Mean optimized validation acc diff -0.08637322882122402
+Mean optimized test acc diff       -0.10913476032559545
+Mean ideal test acc diff           -0.2861018993066024
+Mean optimized validation auc diff 0.353915580740708
+Mean optimized test auc diff       0.06086440441279151
+Mean ideal test auc diff           0.21742277247370628
+
+Validation acc diff pval         True
+Test acc diff pval                 True
+Ideal Test acc diff pval           True
+
+Validation auc diff pval         True
+Test auc diff pval                 False
+Ideal Test auc diff pval           True
+
+--
+
+wisconsin
+Mean optimized validation acc diff 0.01867572156196944
+Mean optimized test acc diff       -0.0054706659120920525
+Mean ideal test acc diff           0.0011318619128466362
+Mean optimized validation auc diff 0.02253705318221446
+Mean optimized test auc diff       -0.004707933740191789
+Mean ideal test auc diff           0.004330136588201121
+
+Validation acc diff pval         True
+Test acc diff pval                 False
+Ideal Test acc diff pval           False
+
+Validation auc diff pval         True
+Test auc diff pval                 False
+Ideal Test auc diff pval           False
+
+--
+
+yeast-2_vs_4
+Mean optimized validation acc diff 0.024506126531632887
+Mean optimized test acc diff       -0.021169354838709676
+Mean ideal test acc diff           -0.023689516129032258
+Mean optimized validation auc diff 0.1700607512620861
+Mean optimized test auc diff       0.04877874338265111
+Mean ideal test auc diff           0.08735731389888186
+
+Validation acc diff pval         True
+Test acc diff pval                 True
+Ideal Test acc diff pval           True
+
+Validation auc diff pval         True
+Test auc diff pval                 False
+Ideal Test auc diff pval           True
+
+--
+
+yeast4
+Mean optimized validation acc diff 0.014465408805031424
+Mean optimized test acc diff       -0.015094339622641516
+Mean ideal test acc diff           -0.03441150044923631
+Mean optimized validation auc diff 0.30895645323019616
+Mean optimized test auc diff       0.1369345326092031
+Mean ideal test auc diff           0.216791569623186
+
+Validation acc diff pval         True
+Test acc diff pval                 True
+Ideal Test acc diff pval           True
+
+Validation auc diff pval         True
+Test auc diff pval                 False
+Ideal Test auc diff pval           True
+
+--
