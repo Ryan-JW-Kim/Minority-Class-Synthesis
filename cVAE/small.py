@@ -9,7 +9,6 @@ from pymoo.algorithms.moo.nsga2 import NSGA2
 from pymoo.indicators.hv import Hypervolume
 from pymoo.core.problem import Problem
 from pymoo.optimize import minimize
-from pymoo.termination.default import DefaultMultiObjectiveTermination
 
 import torch.nn.functional as F
 from torch.utils.data import Dataset, DataLoader, TensorDataset
@@ -81,8 +80,6 @@ for curr in iter_by_datset_name:
 		"Validation baseline acc": [],
 		"Test baseline acc": [],
 
-		"Synthetic persistence": [],
-
 		"Optimized Validation auc": [],
 		"Optimized Test auc": [],
 		"Ideal Test auc": [],
@@ -102,9 +99,66 @@ for curr in iter_by_datset_name:
 		
 		minority_label = pd.DataFrame(y_train).value_counts().argmin()
 
+		# problem = AUC_Optimizer(
+		# 	x_train,
+		# 	y_train,
+		# 	x_validation,
+		# 	y_validation,
+		# )
+		# algorithm = NSGA2(
+		# 	pop_size=AUC_Optimizer.population_size, 
+		# 	sampling=DiverseCustomSampling(),
+		# 	crossover=HUX(), 
+		# 	mutation=BitflipMutation(), 
+		# 	eliminate_duplicates=True,
+		# )
+		# result = minimize(
+		# 	problem, 
+		# 	algorithm, 
+		# 	('n_gen', AUC_Optimizer.population_size), # <--- maybe increase
+		# 	save_history=False
+		# )
+		
+		# validation_aucs = []
+		# test_aucs = []
+		
+		# for instance in result.X:
+		# 	if np.sum(instance) >= AUC_Optimizer.n_neighbours:
+		# 		model = KNeighborsClassifier(n_neighbors=AUC_Optimizer.n_neighbours)
+		# 		model.fit(x_train[instance], y_train[instance])
+		# 		y_pred = model.predict(x_validation)
+		# 		validation_aucs.append(roc_auc_score(y_validation, y_pred))
+		# 		y_pred = model.predict(x_test)
+		# 		test_aucs.append(roc_auc_score(y_test, y_pred))
+		# 	else:
+		# 		validation_aucs.append(0)
+		# 		test_aucs.append(0)
+				
+		# validation_idx = np.argmax(validation_aucs)
+		# test_idx = np.argmax(test_aucs)
+
+		# # Calculate metrics using ideal instance w.r.t validation AUC
+		# model = KNeighborsClassifier(n_neighbors=AUC_Optimizer.n_neighbours)
+		# model.fit(x_train[result.X[validation_idx]], y_train[result.X[validation_idx]])
+
+		# y_pred = model.predict(x_validation)
+		# baseline_validation_acc = accuracy_score(y_validation, y_pred)
+		# baseline_validation_auc = roc_auc_score(y_validation, y_pred)
+
+		# # Calculate metrics using ideal instance w.r.t test AUC
+		# model = KNeighborsClassifier(n_neighbors=AUC_Optimizer.n_neighbours)
+		# model.fit(x_train[result.X[test_idx]], y_train[result.X[test_idx]])
+		
+		# y_pred = model.predict(x_test)
+		# baseline_test_acc = accuracy_score(y_test, y_pred)
+		# baseline_test_auc = roc_auc_score(y_test, y_pred)
+
+		x_SYNTH, y_SYNTH = np.concatenate((x_train, synthetic_samples)), np.concatenate((y_train, [minority_label] * len(synthetic_samples)))
+	
+		# Select ideal instance
 		problem = AUC_Optimizer(
-			x_train,
-			y_train,
+			x_SYNTH,
+			y_SYNTH,
 			x_validation,
 			y_validation,
 		)
@@ -122,85 +176,6 @@ for curr in iter_by_datset_name:
 			save_history=False
 		)
 		
-		
-		validation_aucs = []
-		test_aucs = []
-		
-		for instance in result.X:
-			if np.sum(instance) >= AUC_Optimizer.n_neighbours:
-				model = KNeighborsClassifier(n_neighbors=AUC_Optimizer.n_neighbours)
-				model.fit(x_train[instance], y_train[instance])
-				y_pred = model.predict(x_validation)
-				validation_aucs.append(roc_auc_score(y_validation, y_pred))
-				y_pred = model.predict(x_test)
-				test_aucs.append(roc_auc_score(y_test, y_pred))
-			else:
-				validation_aucs.append(0)
-				test_aucs.append(0)
-				
-		validation_idx = np.argmax(validation_aucs)
-		test_idx = np.argmax(test_aucs)
-
-		# Calculate metrics using ideal instance w.r.t validation AUC
-		model = KNeighborsClassifier(n_neighbors=AUC_Optimizer.n_neighbours)
-		model.fit(x_train[result.X[validation_idx]], y_train[result.X[validation_idx]])
-
-		y_pred = model.predict(x_validation)
-		baseline_validation_acc = accuracy_score(y_validation, y_pred)
-		baseline_validation_auc = roc_auc_score(y_validation, y_pred)
-
-		# Calculate metrics using ideal instance w.r.t test AUC
-		model = KNeighborsClassifier(n_neighbors=AUC_Optimizer.n_neighbours)
-		model.fit(x_train[result.X[test_idx]], y_train[result.X[test_idx]])
-		
-		y_pred = model.predict(x_test)
-		baseline_test_acc = accuracy_score(y_test, y_pred)
-		baseline_test_auc = roc_auc_score(y_test, y_pred)
-
-		x_SYNTH, y_SYNTH = np.concatenate((x_train, synthetic_samples)), np.concatenate((y_train, [minority_label] * len(synthetic_samples)))
-	
-		# Select ideal instance
-		problem = AUC_Optimizer(
-			x_SYNTH,
-			y_SYNTH,
-			x_validation,
-			y_validation,
-		)
-		algorithm = NSGA2(
-			pop_size=300, 
-			sampling=DiverseCustomSampling(),
-			crossover=HUX(), 
-			mutation=BitflipMutation(), 
-			eliminate_duplicates=True,
-		)
-		# termination = DefaultMultiObjectiveTermination(n_max_gen=50)
-
-		result = minimize(
-			problem, 
-			algorithm, 
-			('n_gen', 50), # <--- maybe increase
-			save_history=False
-		)
-		
-		all_samples = []
-		for instance in result.X:
-			for sample in x_SYNTH[instance]:
-				for stored_sample in all_samples:
-					if np.all(sample == stored_sample):
-						break
-				else:
-					all_samples.append(sample)
-
-		# If any of the individuals contain a sample which is synthetic, add it to the
-		# 'proven' synthetic sample list
-		synthetic_survivors = []
-		for sample in all_samples:
-			for synthetic_sample in synthetic_samples:
-				if np.all(sample == synthetic_sample):
-					synthetic_survivors.append(synthetic_sample)
-					break
-		
-
 		validation_aucs = []
 		test_aucs = []
 		
@@ -219,21 +194,9 @@ for curr in iter_by_datset_name:
 		validation_idx = np.argmax(validation_aucs)
 		test_idx = np.argmax(test_aucs)
 
-		# x_ideal_validation_instance_SYNTH = np.concatenate((x_train[result.X[validation_idx]], synthetic_samples))
-		# y_ideal_validation_instance_SYNTH = np.concatenate((y_train[result.X[validation_idx]], [minority_label] * len(synthetic_samples)))
-
-		# x_ideal_test_instance_SYNTH = np.concatenate((x_train[result.X[test_idx]], synthetic_samples))
-		# y_ideal_test_instance_SYNTH = np.concatenate((y_train[result.X[test_idx]], [minority_label] * len(synthetic_samples)))
-
-		x_ideal_validation_instance_SYNTH = x_SYNTH[result.X[validation_idx]]
-		y_ideal_validation_instance_SYNTH = y_SYNTH[result.X[validation_idx]]
-
-		x_ideal_test_instance_SYNTH = x_SYNTH[result.X[test_idx]]
-		y_ideal_test_instance_SYNTH = y_SYNTH[result.X[test_idx]]
-
 		# Calculate metrics using ideal instance w.r.t validation AUC
 		model = KNeighborsClassifier(n_neighbors=AUC_Optimizer.n_neighbours)
-		model.fit(x_ideal_validation_instance_SYNTH, y_ideal_validation_instance_SYNTH)
+		model.fit(x_SYNTH[result.X[validation_idx]], y_SYNTH[result.X[validation_idx]])
 
 		y_pred = model.predict(x_validation)
 		optimized_validation_acc = accuracy_score(y_validation, y_pred)
@@ -245,7 +208,7 @@ for curr in iter_by_datset_name:
 
 		# Calculate metrics using ideal instance w.r.t test AUC
 		model = KNeighborsClassifier(n_neighbors=AUC_Optimizer.n_neighbours)
-		model.fit(x_ideal_test_instance_SYNTH, y_ideal_test_instance_SYNTH)
+		model.fit(x_SYNTH[result.X[test_idx]], y_SYNTH[result.X[test_idx]])
 		
 		y_pred = model.predict(x_test)
 		ideal_test_acc = accuracy_score(y_test, y_pred)
@@ -257,8 +220,6 @@ for curr in iter_by_datset_name:
 		lists["Validation baseline auc"].append(baseline_validation_auc)
 		lists["Test baseline auc"].append(baseline_test_auc)
 
-		lists["Synthetic persistence"].append(len(synthetic_survivors))
-
 		lists["Optimized Validation auc"].append(optimized_validation_auc)
 		lists["Optimized Test auc"].append(optimized_test_auc)
 		lists["Ideal Test auc"].append(ideal_test_auc)
@@ -267,7 +228,6 @@ for curr in iter_by_datset_name:
 		lists["Optimized Test acc"].append(optimized_test_acc)
 		lists["Ideal Test acc"].append(ideal_test_acc)
 		return lists
-	
 	calcs = Parallel(n_jobs=-1)(delayed(execute_file)(file) for file in iter_by_datset_name[curr])
 
 	lists = {
@@ -276,8 +236,6 @@ for curr in iter_by_datset_name:
 
 		"Validation baseline acc": [],
 		"Test baseline acc": [],
-
-		"Synthetic persistence": [],
 
 		"Optimized Validation auc": [],
 		"Optimized Test auc": [],
@@ -297,8 +255,6 @@ for curr in iter_by_datset_name:
 	print(f"Mean optimized validation acc diff {np.mean(np.subtract(lists['Optimized Validation acc'], lists['Validation baseline acc']))}")
 	print(f"Mean optimized test acc diff       {np.mean(np.subtract(lists['Optimized Test acc'], lists['Test baseline acc']))}")
 	print(f"Mean ideal test acc diff           {np.mean(np.subtract(lists['Ideal Test acc'], lists['Test baseline acc']))}")
-	
-	print(f"Mean number of survivors           {np.mean(lists['Synthetic persistence'])}")
 	
 	print(f"Mean optimized validation auc diff {np.mean(np.subtract(lists['Optimized Validation auc'], lists['Validation baseline auc']))}")
 	print(f"Mean optimized test auc diff       {np.mean(np.subtract(lists['Optimized Test auc'], lists['Test baseline auc']))}")
